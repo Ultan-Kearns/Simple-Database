@@ -1,10 +1,11 @@
+//Ultan Kearns 22/07/17
 public class Person
 {
 	int age;
 	int id;
 	String name;
 
-	public Person()
+	public Person()	//default constructor
 	{
 		age = 0;
 		id = 0;
@@ -16,7 +17,7 @@ public class Person
 		setAge(a);
 		setId(id);
 	}
-	public String getName()
+	public String getName()	//getters and setters below
 	{
 		return name;
 	}
@@ -40,7 +41,7 @@ public class Person
 	{
 		id = idNum;
 	}
-	public String toString()
+	public String toString()	//toString method
 	{
 		return String.format("Name:%-10s ID:%4d Age:%2d ",name,id,age);
 	}

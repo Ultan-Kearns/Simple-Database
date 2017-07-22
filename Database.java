@@ -1,9 +1,10 @@
+//Ultan Kearns	22/07/17
 import java.util.Scanner;
-import java.util.InputMismatchException;
+import java.util.InputMismatchException;	//import for error handling
 public class Database
 {
 	static final int MAX = 100;
-	static Person[]  pArray = new Person[MAX];
+	static Person[]  pArray = new Person[MAX];	//declare object array for person
     static Scanner console = new Scanner(System.in);
 
 	public static void main(String[] args)
@@ -50,7 +51,7 @@ public class Database
 			menu();
 		}
 	}
-	public static void addPerson() throws InputMismatchException
+	public static void addPerson() throws InputMismatchException	//throw InputMismatchException which is declared in menu
 	{
 		Person p = new Person();
 		console.nextLine();
@@ -98,7 +99,7 @@ public class Database
 		}
 		catch(Exception e)
 		{
-			System.out.println("Could not remove person\nError: " + e.toString() + "\n\n");
+			System.out.println("Could not remove person\nError: " + e.toString() + "\n\n");	//left this in as it is not an error of invalid type
 		}
 
 	}
