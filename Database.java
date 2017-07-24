@@ -18,7 +18,7 @@ public class Database
 		{
 			do
 			{
-				System.out.println("\n\n1:See List\n2:Add new person\n3:Remove person");
+				System.out.println("\n\n1:See List\n2:Add new person\n3:Remove person\n4.Modify Person\n5.Quit");
 				System.out.print("\n\n\n\nPlease enter choice: ");
 				choice = console.nextInt();
 				switch(choice)
@@ -29,7 +29,7 @@ public class Database
 					{
 						if(pArray[i] != null)
 						{
-							System.out.println(pArray[i]);
+							System.out.println("Array index: " + i + ":\n" + pArray[i]);
 						}
 					}
 					break;
@@ -39,16 +39,47 @@ public class Database
 					case 3:
 					removePerson();
 					break;
+					case 4:
+					modifyPerson();
+					break;
+					case 5:
+					System.out.println("EXITING");
+					System.exit(0);
 					default:
 					System.out.println("ERROR");
 				}
-			}while (choice != 4);
+			}while (choice != 5);
 		}
 		catch(InputMismatchException invalidInput)
 		{
 			System.out.println("ERROR INVALID INPUT\n\n" + invalidInput.toString());
 			console.next();
 			menu();
+		}
+	}
+	public static void modifyPerson() throws InputMismatchException
+	{
+		boolean found = false;
+		System.out.print("Enter array index to modify: ");
+		int mod = console.nextInt();
+		for(int i = 0; i < pArray.length; i++)
+		{
+			if(i == mod && pArray[i] != null)
+			{
+				console.nextLine();
+				System.out.println("\n\n");
+				System.out.print("Please enter name: ");
+				pArray[i].name = console.nextLine();
+				System.out.print("Please enter ID: ");
+				pArray[i].id = console.nextInt();
+				System.out.print("Please enter age: ");
+				pArray[i].age = console.nextInt();
+				found = true;
+			}
+			else if(i == pArray.length - 1 && found != true)
+			{
+				System.out.println("Array index empty\n\n");
+			}
 		}
 	}
 	public static void addPerson() throws InputMismatchException	//throw InputMismatchException which is declared in menu
@@ -78,9 +109,9 @@ public class Database
 	}
 	public static void removePerson()
 	{
-		console.next();
+		console.nextLine();
 		String removePerson;
-		System.out.println("Please enter the name of the person you wish to remove: ");
+		System.out.print("Please enter the name of the person you wish to remove: ");
 		removePerson = console.nextLine();
 		try
 		{
