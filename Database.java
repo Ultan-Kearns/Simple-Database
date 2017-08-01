@@ -1,6 +1,8 @@
 //Ultan Kearns	22/07/17
 import java.util.Scanner;
 import java.util.InputMismatchException;	//import for error handling
+import java.io.*;
+
 public class Database
 {
 	static final int MAX = 100;
@@ -18,7 +20,7 @@ public class Database
 		{
 			do
 			{
-				System.out.println("\n\n1:See List\n2:Add new person\n3:Remove person\n4.Modify Person\n5.Quit");
+				System.out.println("\n\n1:See List\n2:Add new person\n3:Remove person\n4.Modify Person\n5.Print list\n6.Quit");
 				System.out.print("\n\n\n\nPlease enter choice: ");
 				choice = console.nextInt();
 				switch(choice)
@@ -43,12 +45,15 @@ public class Database
 					modifyPerson();
 					break;
 					case 5:
+					print();
+					break;
+					case 6:
 					System.out.println("EXITING");
 					System.exit(0);
 					default:
 					System.out.println("ERROR");
 				}
-			}while (choice != 5);
+			}while (choice != 6);
 		}
 		catch(InputMismatchException invalidInput)
 		{
@@ -133,5 +138,24 @@ public class Database
 			System.out.println("Could not remove person\nError: " + e.toString() + "\n\n");	//left this in as it is not an error of invalid type
 		}
 
+	}
+	public static void print()
+	{
+		try
+		{
+	    	PrintWriter personFile = new PrintWriter("Data.txt");
+			for(int i = 0; i < pArray.length; i++)
+			{
+				if(pArray[i] != null)
+				{
+					personFile.println(pArray[i]);
+				}
+			}
+			personFile.close();
+		}
+		catch(FileNotFoundException notCreated)
+		{
+			System.out.println("File not created");
+		}
 	}
 }
