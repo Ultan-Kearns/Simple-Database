@@ -8,6 +8,7 @@ public class Database
 	static final int MAX = 100;
 	static Person[]  pArray = new Person[MAX];	//declare object array for person
     static Scanner console = new Scanner(System.in);
+   	static int emptyCount = 0;
 
 	public static void main(String[] args)
 	{
@@ -33,6 +34,14 @@ public class Database
 						{
 							System.out.println("Array index: " + i + ":\n" + pArray[i]);
 						}
+						else
+						{
+							emptyCount++;
+						}
+					}
+					if(emptyCount == 100)
+					{
+						System.out.println("List is empty");
 					}
 					break;
 					case 2:
@@ -139,19 +148,23 @@ public class Database
 		}
 
 	}
-	public static void print()
+	public static void print() throws InputMismatchException
 	{
 		try
 		{
-	    	PrintWriter personFile = new PrintWriter("Data.txt");
+			System.out.println("What would you like to call your file?");
+			Scanner text = new Scanner(System.in);
+			String file = text.nextLine();
+			PrintWriter personFile = new PrintWriter(file + ".txt");
 			for(int i = 0; i < pArray.length; i++)
 			{
 				if(pArray[i] != null)
 				{
 					personFile.println(pArray[i]);
 				}
-			}
+
 			personFile.close();
+			}
 		}
 		catch(FileNotFoundException notCreated)
 		{
